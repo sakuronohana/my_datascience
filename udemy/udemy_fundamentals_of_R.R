@@ -1,9 +1,12 @@
 # Vektoren
 
-vect <- c(1,3,5,6,77,88,99)
+vect <- c(1,3,5,6,77,88,99) # c bedeutet Combine
+
+# Welcher Datentype haben wir?
 is.numeric(vect)
 is.integer(vect)
 is.double(vect)
+typeof(vect)
 
 vect2 <- c(3L,12L,24L)
 is.integer(vect2)
@@ -17,11 +20,11 @@ rep() #replication
 
 seq(1,50) # zählt von 1 - 50
 z <-seq(1,50,3) # zählt von 1 - 50 in 3 Schritten
-z
+# Im R können wir den Attributen auch Namen geben was die Funktion noch verständlicher macht
+seq(from=10, to=20, length.out = 100 )
 
-r <-rep(3,50) # repliziert die Nummer 3 50mal
-r
-
+rep(3:6, each=50) # repliziert die Nummer 3 50mal
+?rep
 vectrep <- c(4,50)
 rep(vectrep,20) # Replikation lässt sich auch mit Vektoren machen
 
@@ -56,7 +59,30 @@ x <- rnorm(5)
 # Typischer R-Loop
 for(i in x){
   print(i)
-  }
+}
 
-
+# Hilfestellung 
+?rnorm
   
+# Wie funktionieren Funktionen in R?
+x = rnorm(n=5, mean=1000, sd=8)
+
+# Wurzel im R
+x <- c(3,2,5,6,8)
+sqrt(x)
+
+# Packages in R sind Bibliotheken von Funktionen, Beispielsdaten und kompilierter Code
+# In RStudio können die Packages einfach auf der rechten Seite "Packages" verwaltet werden
+# Achtung: Ein Package ist keine Library. Eine Library ist eine Funkton
+# zur Aktivierung eines Packages
+
+install.packages('plotly')
+?diamonds
+library(ggplot2)
+library(gplots)
+library(cars)
+?cars
+cars
+qplot(data=cars, speed,dist, color=speed)
+
+
