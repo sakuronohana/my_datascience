@@ -47,4 +47,11 @@ stats[3,'Birth.rate']
 stats['Angola',] # Das funktioniert natürlich nicht, da die Rows keine Namem haben
 
 #Selektion mit $
-stats$Internet.users #
+stats$Internet.users #Aufruf ganzer Spalten
+stats$Internet.users[2] # Aufruf des Werts in der 2 Zeile des Merkmals Internet Users
+levels(stats$Income.Group) # Da wir wissen, dass R Factor erkannt hat können wir auch mit diesen Arbeiten
+
+# Basic Operations mti Data Frames 
+stats[1:10,] # gibt alle Zeilen von 1 bis 10 aus
+stats[3:9,]
+stats[c(4,100),]
