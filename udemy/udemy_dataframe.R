@@ -1,6 +1,6 @@
 # Wir haben bereits die Matrixen kennengelernt. Ein DataFrame ist eigentlich das Gleiche
 # mit dem grossen Unterschied, dass DataFrames vielerlei Datentypen beinhalten kann, was 
-# eine Matrix nicht kann.
+# eine Matrix nicht kann. Zudem ist die Selektion der Daten im DF einfacher
 
 
 ''' Methode 1: Mit dem nachfolgenden Befehl lassen wir uns ein Dialogfenster öffnen 
@@ -18,7 +18,7 @@ getwd() # Zeigt aktuelle Workdir
 setwd('C:\\Users\\ude4037\\AnacondaProjects')
 
 #Mac
-setwd('/Users/dili')
+setwd('/Users/dili/Wissen/Work/DataScience/github_reps/my_datascience/udemy')
 
 #Nun können die Daten import werden
 rm(stats)
@@ -39,3 +39,12 @@ head(stats, n=5) # Zeigt erste 5 Zeilen
 tail(stats, n=5) # zeigt letzte 5 Zeilen
 str(stats) # Zeigt die Struktur (str) der Daten wie Merkmale und Datentyp
 summary(stats) # Zeigt Boxplot informationen
+
+# Using $ -> funktioniert nur bei Dataframes ... ein weitere Vorteil 
+# Wir habe ja bereits folgende Möglichkeiten der Datenselektion gelernt
+stats[3,3] 
+stats[3,'Birth.rate']
+stats['Angola',] # Das funktioniert natürlich nicht, da die Rows keine Namem haben
+
+#Selektion mit $
+stats$Internet.users #
