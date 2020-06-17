@@ -63,6 +63,10 @@ is.data.frame(stats[,1,drop=F])
 head(stats)
 stats$Birth.rate * stats$Internet.users
 stats$Birth.rate + stats$Internet.users
+sum(stats$Birth.rate) # summiert alle Gebutsraten über alle Länder
+mean(stats$Birth.rate) # bildet Durchschnitt aller Geburtsraten pro Land
+
+stats[3,'Birth.rate'] - stats[2,'Birth.rate'] # Kalkulation von einzelnen Werten
 
 # Spalte hinzufügen
 stats$mycalc <- stats$Birth.rate + stats$Internet.users # Fügt die Kalkulation in eine neue Spalte hinzu
@@ -70,3 +74,16 @@ head(stats)
 
 # Löschen einer Spalte
 stats$mycalc <- NULL
+
+# --------- Filtering mit Data Frame
+head(stats)
+filter <- stats$Internet.users < 2 # Suche aller Werte unter 2%, Ouput TRUE/FALSE
+stats[filter,] # mit dem Output von oben können wir nun alle Reihen ausfiltern die True haben
+
+stats[stats$Birth.rate > 40,] # Das lässt sich natürlich auch noch vereinfachen
+stats[stats$Birth.rate > 40 & stats$Internet.users < 2,]
+stats[stats$Income.Group == 'High income', ] # wir können natürlich auch kategorische Merkmale filtern
+
+# Nachfolgend noch eine kleine Überprüfung der Korrelation zwischen Geburtsrate und Internetbenutzung
+cor(stats$Internet.users,stats$Birth.rate)
+scatter.smooth(stats$Internet.users,stats$Birth.rate)
