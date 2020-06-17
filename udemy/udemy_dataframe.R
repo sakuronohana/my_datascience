@@ -55,3 +55,18 @@ levels(stats$Income.Group) # Da wir wissen, dass R Factor erkannt hat können wi
 stats[1:10,] # gibt alle Zeilen von 1 bis 10 aus
 stats[3:9,]
 stats[c(4,100),]
+is.data.frame(stats[1,])
+is.data.frame(stats[,1]) # Wird nicht als DF angezeigt
+is.data.frame(stats[,1,drop=F])
+
+# Math Operations
+head(stats)
+stats$Birth.rate * stats$Internet.users
+stats$Birth.rate + stats$Internet.users
+
+# Spalte hinzufügen
+stats$mycalc <- stats$Birth.rate + stats$Internet.users # Fügt die Kalkulation in eine neue Spalte hinzu
+head(stats)
+
+# Löschen einer Spalte
+stats$mycalc <- NULL
