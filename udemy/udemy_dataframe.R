@@ -112,3 +112,18 @@ colnames(mydf) <- c('Country','Code','Region') # Nun benennen wir noch die Spalt
 # direkt bei der Erstellung des DF 
 mydf <- data.frame(Country=Countries_2012_Dataset, Code=Codes_2012_Dataset, Region=Regions_2012_Dataset)
 head(mydf)
+
+# ----- Zusammenführen von Data Frames
+''' 
+Oben haben wir eine neues Data Frame erstellt nun wollen wir die zwei zusammenführen.
+Wenn wir zwei Data Frames zusammenführen suchen wir nach einer Gemeinsamkeit in diesem Beispiel
+haben wir die Namen der Länder und die Ländercodes. Da die Ländernamen vielleicht unterschiedlich
+sein können gehen wir auf die standartisierte Version also die Ländercodes
+'''
+# Nachfolgend fügen wir die zwei DFs mittels dem Schlüssel Country.Code und Code zusammen, damit
+# die richtigen Spalten zusammenkommen
+merged <- merge(stats, mydf, by.x='Country.Code', by.y='Code')
+head(merged) # Wir sehen nun unser zusammengeführtes DF hat zwei mal eine Spalte mit den Ländernamen
+merged$Country.Name <- NULL # Nun löschen wir ganz einfach das überflüssige Duplikat
+head(merged)
+
