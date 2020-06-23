@@ -46,12 +46,12 @@ stats[3,3]
 stats[3,'Birth.rate']
 stats['Angola',] # Das funktioniert natürlich nicht, da die Rows keine Namem haben
 
-#Selektion mit $
+#------Selektion mit $
 stats$Internet.users #Aufruf ganzer Spalten
 stats$Internet.users[2] # Aufruf des Werts in der 2 Zeile des Merkmals Internet Users
 levels(stats$Income.Group) # Da wir wissen, dass R Factor erkannt hat können wir auch mit diesen Arbeiten
 
-# Basic Operations mti Data Frames 
+# ------Basic Operations mti Data Frames 
 stats[1:10,] # gibt alle Zeilen von 1 bis 10 aus
 stats[3:9,]
 stats[c(4,100),]
@@ -59,7 +59,7 @@ is.data.frame(stats[1,])
 is.data.frame(stats[,1]) # Wird nicht als DF angezeigt
 is.data.frame(stats[,1,drop=F])
 
-# Math Operations
+# -------Math Operations
 head(stats)
 stats$Birth.rate * stats$Internet.users
 stats$Birth.rate + stats$Internet.users
@@ -68,7 +68,7 @@ mean(stats$Birth.rate) # bildet Durchschnitt aller Geburtsraten pro Land
 
 stats[3,'Birth.rate'] - stats[2,'Birth.rate'] # Kalkulation von einzelnen Werten
 
-# Spalte hinzufügen
+# --------Spalte hinzufügen
 stats$mycalc <- stats$Birth.rate + stats$Internet.users # Fügt die Kalkulation in eine neue Spalte hinzu
 head(stats)
 
@@ -87,21 +87,6 @@ stats[stats$Income.Group == 'High income', ] # wir können natürlich auch kateg
 # Nachfolgend noch eine kleine Überprüfung der Korrelation zwischen Geburtsrate und Internetbenutzung
 cor(stats$Internet.users,stats$Birth.rate)
 scatter.smooth(stats$Internet.users,stats$Birth.rate)
-
-# ------ Kurzeinführung in qplot (ggplot)
-library(ggplot2)
-qplot(data=stats, x=Internet.users) # Erstellt ein Distplot
-qplot(data=stats, x=Income.Group, y=Birth.rate) # Erstellt ein Scatterplot
-qplot(data=stats, x=Income.Group, y=Birth.rate, size=I(3)) # Erstellt ebenfalls ein Scatterplot mit grösseren Punkten
-qplot(data=stats, x=Income.Group, y=Birth.rate, size=I(2),color=I('blue')) # Wir fügen nun noch eine Farbe dazu
-qplot(data=stats, x=Income.Group, y=Birth.rate, geom='boxplot') # Nun wollen wir eine bestimmten Plot erstellen
-
-# ----- Data Science Visualisierung 
-qplot(data=stats, x=Internet.users, y=Birth.rate) # Vergleich Anzahl Internet.users mit Geburtsrate
-qplot(data=stats, x=Internet.users, y=Birth.rate, size=I(2), color=('red'))
-# Nachfolgend werden wir den Vergleich erneut tätigen. Dabei wird die Grösse der Punkte auf die Geburtsrate
-# und die Farbe der Punkte nach Einkommensgruppe gestaltet.
-qplot(data=stats, x=Internet.users, y=Birth.rate, size=Birth.rate, color=Income.Group)
 
 # ----- Erstellen von Data Frames
 mydf <- data.frame(Countries_2012_Dataset,Codes_2012_Dataset,Regions_2012_Dataset) # Wir überführen nun diese 3 Vectors in ein Data Frame 
@@ -126,4 +111,34 @@ merged <- merge(stats, mydf, by.x='Country.Code', by.y='Code')
 head(merged) # Wir sehen nun unser zusammengeführtes DF hat zwei mal eine Spalte mit den Ländernamen
 merged$Country.Name <- NULL # Nun löschen wir ganz einfach das überflüssige Duplikat
 head(merged)
+
+# ------ Kurzeinführung in qplot (ggplot)
+library(ggplot2)
+qplot(data=stats, x=Internet.users) # Erstellt ein Distplot
+qplot(data=stats, x=Income.Group, y=Birth.rate) # Erstellt ein Scatterplot
+qplot(data=stats, x=Income.Group, y=Birth.rate, size=I(3)) # Erstellt ebenfalls ein Scatterplot mit grösseren Punkten
+qplot(data=stats, x=Income.Group, y=Birth.rate, size=I(2),color=I('blue')) # Wir fügen nun noch eine Farbe dazu
+qplot(data=stats, x=Income.Group, y=Birth.rate, geom='boxplot') # Nun wollen wir eine bestimmten Plot erstellen
+
+# ----- Data Science Visualisierung 
+qplot(data=stats, x=Internet.users, y=Birth.rate) # Vergleich Anzahl Internet.users mit Geburtsrate
+qplot(data=stats, x=Internet.users, y=Birth.rate, size=I(2), color=('red'))
+# Nachfolgend werden wir den Vergleich erneut tätigen. Dabei wird die Grösse der Punkte auf die Geburtsrate
+# und die Farbe der Punkte nach Einkommensgruppe gestaltet.
+qplot(data=stats, x=Internet.users, y=Birth.rate, size=Birth.rate, color=Income.Group)
+
+# ----- Visualisierung mit neuer Split
+qplot(data=merged, x=Internet.users, y=Birth.rate, color=Region) # Visualisierung des zusammengefügten Data Frames
+
+# Arbeiten wir nun mal etwas mit den Formen der Markierungen (Shapes)
+# Die Nummer der Shapes findet man hier http://sape.inf.usi.ch/sites/default/files/ggplot2-shape-identity.png
+qplot(data=merged, x=Internet.users, y=Birth.rate, color=Region, size=I(2),shape=I(23))
+
+# Manchmal sind die Marker so gross, dass sie sich überlappen, in diesem Fall hat man die Möglichkeit
+# die Marker etwa Transparent zu machen. Je höhler der Wert von Alpha je intransparenter wird der Marker
+qplot(data=merged, x=Internet.users, y=Birth.rate, color=Region, size=I(4),shape=I(19), alpha=I(0.6))
+
+# Nun fügen wir noch einen Titel dazu
+qplot(data=merged, x=Internet.users, y=Birth.rate, color=Region, size=I(4),shape=I(19), alpha=I(0.6), 
+      main='Geburtenraten vs. Internetbenutzer')
 
