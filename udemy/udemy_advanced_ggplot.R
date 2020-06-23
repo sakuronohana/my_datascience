@@ -75,3 +75,14 @@ grafik + geom_point(aes(x=BudgetMillions)) + xlab('Budget Millions')
 
 # und jetzt das Ganze noch mit kompinierten geometischen Objekten
 grafik + geom_line(size=1) + geom_point()
+
+#----- Mapping und Setting
+# Es gibt zwei wesentliche Arten wie man bspw. eine Farbe in einem ggplot hinzufügt.
+grafik <- ggplot(data=movies,aes(x=CriticRating, y=AudienceRating))
+
+# Was wir ja bereits kennen ist das Mapping. Beim Mapping verbinden wir ein Merkmal mit einer Plot-Eigenschaft
+# bspw. Color und BudgetMillions
+grafik + geom_point(aes(color=Genre))
+
+# Beim Setting setzen wir lediglich ein Eigenschaft auf eine Element
+grafik + geom_point(color='green')
