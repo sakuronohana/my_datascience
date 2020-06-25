@@ -83,6 +83,45 @@ grafik <- ggplot(data=movies,aes(x=CriticRating, y=AudienceRating))
 # Was wir ja bereits kennen ist das Mapping. Beim Mapping verbinden wir ein Merkmal mit einer Plot-Eigenschaft
 # bspw. Color und BudgetMillions
 grafik + geom_point(aes(color=Genre))
+grafik + geom_point(aes(size=BudgetMillions))
 
-# Beim Setting setzen wir lediglich ein Eigenschaft auf eine Element
+# Beim Setting setzen wir lediglich ein Eigenschaft auf ein Element
 grafik + geom_point(color='green')
+grafik + geom_point(size=4)
+
+#----- Histograms und Density Charts
+# Wenn es darum geht zu prüfen, ob ein Datensatz einer Normalverteilung folgt, dann ist ein Histogramm der beste Plot dafür
+# Im nachfolgenden Beispiel wird auf der X-Achse der Wert 0 - 300 Millionen (USD) und auf der Y-Achse die Anzahl Movies welche
+# welche eine bestimmtes Millionen Budget verbraucht hat.
+s <- ggplot(data=movies, aes(x=BudgetMillions))
+s + geom_histogram(binwidth = 10)
+
+# Wollen wir noch etwas Farbe hinzufügen, dann benutzen wir das Attribut "fill". Das Attribut "color" bedeutet in diesem
+# Fall nur die Umrandung
+s + geom_histogram(binwidth =10, aes(fill=Genre), color='Black')
+
+# Mittels eine Density Plots können aufzeigen wo die Dichte am höchsten ist.
+s + geom_density(aes(fill=Genre), position='stack') # mittels position stack können wir die Schichten besser erkennen
+
+#---------- Tips für Layering
+# Der Weg ist zum Plot ist abhängig davon, ob man mehrere Visualisierungen mit dem gleichen Merkmal (Option 1) machen möchte oder
+# das Merkmal immer wieder ändert (Option 2).
+
+# 1. Option
+t <- ggplot(data=movies, aes(x=AudienceRating))
+t + geom_histogram(binwidth = 10, fill='White', color="Blue") # Zur Erinnerung das ist ein Setting
+
+# 2. Option
+t <- ggplot(data=movies)
+t + geom_histogram(binwidth = 10, aes(x=AudienceRating),fill='White', color='Blue')
+
+#----- Statisitcal Transformationen
+u <- ggplot (data=movies, aes(x=CriticRating, y=AudienceRating, color=Genre))
+u + geom_point() + geom_smooth(fill=NA)
+
+# Eine ander Sicht auf die Datenverteilung erhalten wir mit Boxplots
+u <- ggplot(data=movies, aes(x=Genre, y=AudienceRating, color=Genre))
+u + geom_boxplot()
+u + geom_boxplot(size=1) + geom_point()
+u + geom_boxplot(size=1) + geom_jitter()
+u + geom_jitter() + geom_boxplot(size=1, alpha=0.5)
