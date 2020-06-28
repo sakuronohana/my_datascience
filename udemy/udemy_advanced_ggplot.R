@@ -125,3 +125,27 @@ u + geom_boxplot()
 u + geom_boxplot(size=1) + geom_point()
 u + geom_boxplot(size=1) + geom_jitter()
 u + geom_jitter() + geom_boxplot(size=1, alpha=0.5)
+
+#----- Facets
+# Facets sind mehrere Plot in einem
+
+# Facets mit Histogramm
+v <- ggplot(data=movies, aes(x=BudgetMillions))
+v + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black') + 
+  # Tilde-Zeichen auf MacBook alt+N
+   facet_grid(Genre~., # mit diesem Code erstellen wir für jedes Genre eine Grafik
+              scales='free') # Mit Scale Free fängt die Scala Y zwar mit Null an aber nach oben ist dir Grafik frei
+# Facets mit Scatterplot
+w <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, color=Genre))
+w + geom_point(size=1) + 
+  facet_grid(Genre~Year) # Hier stellen wir sowohl in der Zeile wie auch in der Spalte etwa dar.
+
+# Wir können hierzu natürlich auch noch eine geglättete Line ziehen
+w + geom_point(size=1) +
+  geom_smooth() +
+  facet_grid(Genre~Year)
+
+# Wir können hierzu natürlich auch noch eine geglättete Line und noch die Grösse in Budget pro Film
+w + geom_point(aes(size=BudgetMillions)) + geom_smooth() + facet_grid(Genre~Year)
+
+# Auf der Y-Achse haben wir noch eine Range von -50 - 150 wir werden das nun korrigieren
