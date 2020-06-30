@@ -184,8 +184,19 @@ o + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black')
 # Wir fügen nun mal ein Achsenbeschriftung (Label) hinzu
 h <- o + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black')
 h + xlab('Money Axis') + ylab('Number of Movies') +
-  # Wir können die Beschriftungen jetzt auch noch formatieren
-  theme(axis.title.x = element_text(color='DarkGreen', size=30),
-        axis.title.y =element_text(color='Red', size=30),
-        axis.text.x = element_text(size=20), # Hiermit vergrössern wir die Werte auf der x und y Achse
-        axis.text.y = element_text(size=20))
+  ggtitle('Movie Budget Distribution') +
+# Wir können die Beschriftungen jetzt auch noch formatieren
+theme(axis.title.x = element_text(color='DarkGreen', size=20),
+        axis.title.y =element_text(color='Red', size=20),
+        axis.text.x = element_text(size=10), # Hiermit vergrössern wir die Werte auf der x und y Achse
+        axis.text.y = element_text(size=10),
+        legend.title = element_text(size=20), # Grösse Legendentitel
+        legend.text = element_text(size=10), # Grösse Schrift Legendentext
+        legend.position = c(1,1), # Position 
+        legend.justification = c(1,1),
+      
+        plot.title = element_text(color='DarkBlue',
+                                 size=25,
+                                 family = 'Courier'))
+
+
