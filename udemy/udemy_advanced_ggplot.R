@@ -149,3 +149,43 @@ w + geom_point(size=1) +
 w + geom_point(aes(size=BudgetMillions)) + geom_smooth() + facet_grid(Genre~Year)
 
 # Auf der Y-Achse haben wir noch eine Range von -50 - 150 wir werden das nun korrigieren
+
+#----- Koordinaten und Zoomming
+
+m <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, size=BudgetMillions, color=Genre))
+m + geom_point()
+m + geom_point() + 
+  xlim(50, 100) + # Mit diesem zustätzlichen Layer schränken wir den Range von X ein
+  ylim(50,100) # und hier die Y-Achse
+
+# Leider funktioniert es nicht immer so gut wie das folgenden Beispiel zeigt:
+n <- ggplot(data=movies, aes(x=BudgetMillions))
+n + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black') +
+  ylim(0,50) # Was nun passiert ist, dass der Datenrange einfach abgeschnitten wird, wir wollen aber ein Zoom-in
+
+# Hier nun ein Beispiel eines Zoom-ins
+n + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black') +
+  coord_cartesian(ylim=c(0,50)) # Mit der Coordinate Möglichkeit können wir nun in den Range 0 - 50 Zoomen
+
+# Nun machen wir das noch mit dem Scatterplot
+w <- ggplot(data=movies, aes(x=CriticRating, y=AudienceRating, color=Genre))
+w + geom_point(size=1) +
+  geom_smooth() +
+  facet_grid(Genre~Year)+
+  coord_cartesian(ylim=c(0,150)) # nun haben wir einen optimierten Scatterplot 
+
+#------ Themes
+# Bis anhin haben wir uns vor allem um die Daten und ihre richtige Positionierung gekümmert
+# Nun fügen wir noch 
+
+o <- ggplot(data=movies, aes(x=BudgetMillions))
+o + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black')
+
+# Wir fügen nun mal ein Achsenbeschriftung (Label) hinzu
+h <- o + geom_histogram(binwidth = 10, aes(fill=Genre), color='Black')
+h + xlab('Money Axis') + ylab('Number of Movies') +
+  # Wir können die Beschriftungen jetzt auch noch formatieren
+  theme(axis.title.x = element_text(color='DarkGreen', size=30),
+        axis.title.y =element_text(color='Red', size=30),
+        axis.text.x = element_text(size=20), # Hiermit vergrössern wir die Werte auf der x und y Achse
+        axis.text.y = element_text(size=20))
