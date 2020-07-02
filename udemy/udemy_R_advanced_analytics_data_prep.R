@@ -27,3 +27,9 @@ fin$ID <- factor(fin$ID) # Wandelt einen Int in eine Factor um
 fin$Inception <- factor(fin$Inception)
 str(fin) # Checken wir es kurz ... und es ist nun ein Factor
 
+# Nach dem wir nun den Datentype geändert haben, wollen wir die Wert noch von Quotes usw. säubern
+# Hierzu gibt es im R die Funktionen sub() und gsub(). 
+
+# gsub() wird dabei am meisten eingesetzt, da wir mehrere Dinge gleichzeitig bereinigen können
+fin$Expenses <- gsub(" Dollars", "")
+
