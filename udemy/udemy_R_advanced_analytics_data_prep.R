@@ -58,4 +58,41 @@ Es gibt verschiedene Möglichkeiten wie man mit fehlenden Werten umgehen kann:
 6. Ersetze den fehlenden Wert mit Dummy-Werten die das Fehlen von Werten anzeigt.Bswp.
 '''
 
+# Was sind NAs
+'''
+Wenn wir uns mit fehlenden Datenwerten beschäftigen, dann kommen wir nicht um das Thema NA umher
+NA steht für Not Available und ist ein Indikator für einen fehlenden Wert. NA ist eine logische Konstante
+welche wir ja bereit von TRUE (1) und FALSE (0) kennen. 
+'''
+?NA # Mittels der Hilfe können wir mehr über NA erfahren.
+is.na(fin) # mittels dieser Funktion können einen Datensatz nach NAs absuchen. 
+
+# Methoden zur Auffindung fehlender Wert
+
+# Um fehlende Wert aufzuspüren können wir den Datensatz anzeigen lassen. 
+head(fin, 25)
+# Das Problem welches hier besteht ist, dass wenn ein Datensatz mehrere Tausend bis Millionen Records hat
+# es mal schnell sehr unübersichtlich wird. Hierfür haben wir folgenden Möglichkeit
+fin[!complete.cases(fin),] # Nun werden uns alle Zeilen angezeigt, welche NAs haben
+
+# Das ist ja schön und gut aber, wenn wir uns nochmal eine Übersicht der ersten 25 Zeilen des
+# Datensatzes machen, dann werden wir feststellen, dass wir auch leere Datenfelder bzw. Datenfelder 
+# ohne NAs haben.
+head(fin, 25)
+
+# Um diese Problem zu lösen müssen wir alle leeren Felder mit NA befüllen und das machen wir am Besten
+# wenn wir den Datensatz importieren.
+fin <- read.csv('P3-Future-500-The-Dataset.csv', na.strings = ('')) # Mit dem Zusatz na.strings erledigen wir das Problem im nu.
+head(fin, 25)
+# Der aufmerksame Betrachter wird jetzt natürlich erkennen, dass wir NAs mit <> und ohne haben
+# Die Erklärung hierzu ist ganz einfach. R zeigt uns damit, dass es sich um ein kategorisches Datenfeld handelt und hilft uns dabei
+# die NAs besser herauszusehen.
+fin[!complete.cases(fin),] # So und nun werden uns alle Zeilen mit NAs angezeigt.
+
+# Filtering von nicht fehlenden Daten.
+# Auch hier gibt es verschiedene Wege Daten zu filtern bzw. zu finden.
+
+fin$Revenue == 9684527 # Gibt die Boolean Werte TRUE/FALSE zurück, zugegeben etwas unübersichtlich
+fin[fin$Revenue == 9684527,] # Nun haben wir nur die Zeile mit dem Wert
+
 
