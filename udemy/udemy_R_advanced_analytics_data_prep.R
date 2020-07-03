@@ -89,10 +89,53 @@ head(fin, 25)
 # die NAs besser herauszusehen.
 fin[!complete.cases(fin),] # So und nun werden uns alle Zeilen mit NAs angezeigt.
 
-# Filtering von nicht fehlenden Daten.
+# Selektion von nicht fehlenden Daten.
 # Auch hier gibt es verschiedene Wege Daten zu filtern bzw. zu finden.
 
 fin$Revenue == 9684527 # Gibt die Boolean Werte TRUE/FALSE zurück, zugegeben etwas unübersichtlich
-fin[fin$Revenue == 9684527,] # Nun haben wir nur die Zeile mit dem Wert
+fin[fin$Revenue == 9684527,] # Nun haben wir nur die Zeile mit dem Wert jedoch mit einen NA Output der nicht so schön ist. 
+
+# Es gibt jedoch eine Abfragemöglichkeit mit der Funktio which die exakt den Wert ausgibt den wir haben wollen.
+
+fin[which(fin$Revenue == 9684527),]
+fin[which(fin$Employees == 45),]
+fin[which(fin$Inception != '2013'),] # mit != schliesse ich etwas aus
+
+# Selektion von fehlenden Daten
+# Nun wollen wir noch die Selektion von Daten mit NA genau im gleichen Stil ausführen. Dabei können wir auf die Funktion is.na zurückgreifen.
+fin[is.na(fin$Revenue),]
+fin[is.na(fin$Expenses),]
+
+# Löschen von Records mit fehlenden Daten
+# Beschäftigen wir uns nun mit dem löschen von fehlenden Zeilen. Wichtig ist das wir immer eine Sicherung des Zwischenstandes machen
+fin_backup <- fin
+fin[is.na(fin$Expenses),] # Bevor wir anfangen lassen wir uns nochmal alle Records mit fehlenden Daten zeigen.
+
+# Damit wir nun nicht jede Zeile eins Merkmals einzeln entfernen müssen gibt es einen guten Trick .. wir sichern alle Records die kein NA habe in der gleichen Variable
+fin <- fin[!is.na(fin$Industry),]
+fin[is.na(fin$Industry),] # Wir sehen nun, R gibt keine Zeile mehr mit NA im Merkmal Industry zurück.
+
+# Resetting DF Index
+# Wenn wir Zeilen löschen, wie wir es oben getan haben, dann wird auch der entsprechenden Index gelöscht. 
+head(fin, 25) # Hier sehen wir, dass bspw. der Index 14 und 15 gelöscht wurden.
+
+# Oft ist es zwar unschön stellt aber in der Data Analytics kein wirkliches Problem dar. Möchte man den Index jedoch wieder korrigieren, dann
+# sind die folgenden zwei Methode die Einfachste:
+rownames(fin) <- 1:nrow(fin)
+rownames(fin) <- NULL
+fin # Wir sehen die Lücke zwischen 13 und 16 ist wieder geschlossen
+
+# Ersetzen von fehlenden Daten mit der Factual Analysis Method
+# Manchmal können wir fehlende Daten ganz einfach auf der Grundlage bestehender ähnlicher Records ersetzen. In unserem Datensatz ist dies bspw. 
+# bei Merkmal State der Falle 
+fin[!complete.cases(fin),] # Wir sehen hier bspw. bei der Stadt New York der fehlende Staad den wir einfach mit NY ergänzen können.
+fin[is.na(fin$State),] # Mit dieser Selektion können wir sehen, dass uns 4 State Werte fehlen.
+# Da wir ja nicht viele Werte im diesem Merkmal haben, welche uns fehlen, können wir diese einzeln ergänzen
+fin[is.na(fin$State) & fin$City == 'New York','State'] <- 'NY'
+fin[is.na(fin$State) & fin$City == 'New York',] # erledigt :-)
+fin[is.na(fin$State) & fin$City == 'San Francisco','State'] <- 'CA'
+fin[is.na(fin$State) & fin$City == 'San Francisco',] # auch erledigt
+
+
 
 
