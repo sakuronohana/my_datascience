@@ -9,9 +9,9 @@ bereits Factoren erstellt hat. Hier aber nochmal einen kurzen Recap was Factors 
 Ein Factor ist grundsätzlich ein Anzahl kategorischer Werte eines Features, welche R erkennt
 und für sich nummeriert.
 
-Mittels str sehen wir auch, welche Datentypen R auch noch erkannt hat, bzw. umgewandelt hat.
-Während dieser Phase der Datenaufbereitung müssen wir uns immer überlegen, ob der zugewiesene Datentyp 
-überhaupt Sinn macht. Bspw. sehen wir, dass R die ID und Inception als Integer definiert. 
+Mittels str (Struktur) sehen wir auch, welche Datentypen R auch noch erkannt, bzw. umgewandelt hat.
+Während dieser Phase der Datenaufbereitung müssen wir uns immer überlegen, ob die zugewiesenen Datentypen 
+überhaupt Sinn machen. Bspw. sehen wir, dass R die ID und Inception als Integer definiert. 
 Dieser Datentypen für diese Merkmale machen aber nicht unbedingt Sinn. 
 
 Auf der anderen Seite hat R bspw. die Werte des Merkmals Revenue (Einnahmen) und Expenses (Ausgaben)
@@ -136,6 +136,17 @@ fin[is.na(fin$State) & fin$City == 'New York',] # erledigt :-)
 fin[is.na(fin$State) & fin$City == 'San Francisco','State'] <- 'CA'
 fin[is.na(fin$State) & fin$City == 'San Francisco',] # auch erledigt
 
-
-
+# Ersetzen von Werten mittels Median
+'''
+Im Zusammenhang mit fehlenden nummerische Werte können oft auch statistische oder arithmetische
+Vorgehen/Berechnungen helfen einen fehlenden Wert zu ersetzen.In diesem Beispiel werden wir den Median
+verwenden. Wichtig bei der ganzen Sache ist, dass nicht einfach den Median oder auch Mean
+des ganzen Merkmals nehmen sondern auch noch andere Faktoren wie bspw. Industriezweig mit einbeziehen.
+Der Median in Esswarenhandel kann von von dem im Bereich Gesundheit differenzieren.
+'''
+fin[!complete.cases(fin),]
+# In der dritten Reihe auf dem Merkmal Employees finden wir einen fehlenden Wert NA.
+median(fin[,'Employees'], na.rm=TRUE) # Da wir noch einen NA im Merkmal Employees haben müssen wir diesen Ausklammern
+# Wir wollen nun nicht das Merkmal Indurstry miteinbeziehen.
+median(fin[fin$Industry=='Retail','Employees'], na.rm=TRUE)
 
