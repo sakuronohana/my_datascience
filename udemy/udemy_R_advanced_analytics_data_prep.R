@@ -148,5 +148,11 @@ fin[!complete.cases(fin),]
 # In der dritten Reihe auf dem Merkmal Employees finden wir einen fehlenden Wert NA.
 median(fin[,'Employees'], na.rm=TRUE) # Da wir noch einen NA im Merkmal Employees haben müssen wir diesen Ausklammern
 # Wir wollen nun nicht das Merkmal Indurstry miteinbeziehen.
-median(fin[fin$Industry=='Retail','Employees'], na.rm=TRUE)
+med_empl_retail <- median(fin[fin$Industry=='Retail','Employees'], na.rm=TRUE)
+med_empl_retail
+fin[is.na(fin$Employees) & fin$Industry == 'Retail',] 
+fin[is.na(fin$Employees) & fin$Industry == 'Retail','Employees'] <- med_empl_retail
 
+med_empl_finsrv <- median(fin[fin$Industry == 'Financial Services', 'Employees'], na.rm=TRUE)
+fin[is.na(fin$Employees) & fin$Industry == 'Financial Services','Employees'] <- med_empl_finsrv
+fin[332,]
