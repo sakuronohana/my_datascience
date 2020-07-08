@@ -156,3 +156,20 @@ fin[is.na(fin$Employees) & fin$Industry == 'Retail','Employees'] <- med_empl_ret
 med_empl_finsrv <- median(fin[fin$Industry == 'Financial Services', 'Employees'], na.rm=TRUE)
 fin[is.na(fin$Employees) & fin$Industry == 'Financial Services','Employees'] <- med_empl_finsrv
 fin[332,]
+
+med_growth_contr <- median(fin[fin$Industry == 'Construction', 'Growth'], na.rm=TRUE)
+fin[is.na(fin$Growth) & fin$Industry == 'Construction', 'Growth'] <- med_growth_contr
+fin[8,]
+
+med_rev_contr <- median(fin[fin$Industry == 'Construction', 'Revenue'], na.rm=TRUE)
+fin[is.na(fin$Revenue) & fin$Industry == 'Construction', 'Revenue'] <- med_rev_contr
+med_exp_contr <- median(fin[fin$Industry == 'Construction', 'Expenses'], na.rm=TRUE)
+fin[is.na(fin$Expenses) & fin$Industry == 'Construction', 'Expenses'] <- med_exp_contr
+
+# Kommen wir nun noch zu einer weiteren Methode um fehlende Werte zu ergänzen mittels Berechnung 
+'''
+Wir wissen ja, dass sich der Profit aus den Einnahmen (Revenue) minus den Ausgaben (Expenses) berechnen lässt. Umgekehrt lässen sich 
+mittels dem Profit und Ausgaben die Einnahmen und mittels dem Profit und Einnahmen die Ausgaben berechnen.
+'''
+fin[!complete.cases(fin),]
+
