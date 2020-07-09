@@ -185,3 +185,7 @@ visdat1 + geom_point()
 
 visdat2 <- ggplot(data=fin, aes(x=Revenue, y=Expenses, color=Industry))
 visdat2 + geom_point() + geom_smooth(fill=NA, size=1.2)
+
+# Hier noch ein Boxplot
+visdat3 <- ggplot(data=fin, aes(x=Industry, y=Growth, color=Industry))
+visdat3 + geom_jitter() +  geom_boxplot(size = 1, alpha=0.5, outlier.color = NA)
