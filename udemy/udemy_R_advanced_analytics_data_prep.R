@@ -172,4 +172,16 @@ Wir wissen ja, dass sich der Profit aus den Einnahmen (Revenue) minus den Ausgab
 mittels dem Profit und Ausgaben die Einnahmen und mittels dem Profit und Einnahmen die Ausgaben berechnen.
 '''
 fin[!complete.cases(fin),]
+fin[is.na(fin$Profit),'Profit'] <- fin[is.na(fin$Profit), 'Revenue'] - fin[is.na(fin$Profit),'Expenses']
+fin[c(8,42),]
 
+fin[is.na(fin$Expenses),'Expenses'] <- fin[is.na(fin$Expenses),'Revenue'] - fin[is.na(fin$Expenses),'Profit']
+fin[17,]
+
+# Zum Abschluss visualisieren den Datensatz
+library(ggplot2)
+visdat1 <- ggplot(data=fin, aes(x=Revenue, y=Expenses, color=Industry, size=Profit))
+visdat1 + geom_point()
+
+visdat2 <- ggplot(data=fin, aes(x=Revenue, y=Expenses, color=Industry))
+visdat2 + geom_point() + geom_smooth(fill=NA, size=1.2)
