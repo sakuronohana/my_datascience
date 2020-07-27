@@ -28,3 +28,19 @@ head(util, 12)
 util$Timestamp <- NULL
 util <- util[,c(4,1,2,3)] # Nun überschreiben wir den Datensatz mit einer neuen Anordnung der Spalten
 names(util)[names(util) == 'PosixTime'] <- 'Timestamp' # Nun ändern wir noch den Namen der Spalte
+
+# Wie wir ja bereits wissen können wir verschiedene Datentypen in einer Liste zusammenführen.
+RL1 <- util[util$Machine == 'RL1',]
+
+# Nachfolgend werden wir nun eine Liste erstellen, in welcher minimum, mean und maximum der Nutzung der Maschine RL1 beinhaltet.
+util_stats_rl1 <- c(min(RL1$Utilization, na.rm=TRUE),
+                    mean(RL1$Utilization, na.rm=TRUE),
+                    max(RL1$Utilization, na.rm=TRUE))
+
+# Wir wollen nun herausfinden, ob die Nutzung der Maschine RL1 je unter 90% gefallen ist. Die einfachste Art und Weise ist wie folgt:
+RL1$Utilization < 0.90 # Ausgabe nur TRUE oder FALSE
+which(RL1$Utilization < 0.90) # Ausgabe die jeweilig Postion im Datensatz
+util_under_90_flag <- length(which(RL1$Utilization < 0.90)) > 1# und nun noch die Anzahl 
+util_under_90_flag
+list_rl1 <- list('RL1', util_stats_rl1, util_under_90_flag) # Aus den Resultaten erstellen wir nun eine Liste.
+list_rl1 
