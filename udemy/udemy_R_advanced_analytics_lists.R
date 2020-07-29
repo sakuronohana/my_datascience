@@ -44,3 +44,28 @@ util_under_90_flag <- length(which(RL1$Utilization < 0.90)) > 1# und nun noch di
 util_under_90_flag
 list_rl1 <- list('RL1', util_stats_rl1, util_under_90_flag) # Aus den Resultaten erstellen wir nun eine Liste.
 list_rl1 
+
+# Wir befassen uns im Zusammenhang mit den Listen auch mit dem Naming der einzelnen Elemente innerhalb
+# der Liste
+
+names(list_rl1) # Wie wir sehen können sind die Elemente in der Liste noch nicht benannt
+names(list_rl1) <- c('Machine','Stats','LowThreshold')
+
+# Wir können natürlich auch bereits bei der Erstellung der Liste einen Namen vergeben
+list_rl1 <- list(Machine='RL1', Stats=util_stats_rl1, LowThreshold=util_under_90_flag)
+list_rl1['Machine'] # Der Zugriff auf die einzelnen Element gestaltet sich mit Namen schon etwas einfacher
+
+#Schauen wir uns nun einmal an wie wir verschiedene Komponenten aus einer Liste aufrufen können
+#Es gibt 3 verschiedene Arten, wie wir Informationen aus einer Liste aufrufen können:
+# [] - Mit den eckigen Klammern rufen wir immer eine Liste inkl. Name auf. Der Aufruf funktioniert im Index stil
+list_rl1[1]
+
+#[[]] - Mit den doppelten eckigen Klammern rufen wir nur das aktuelle Element auf
+list_rl1[[1]]
+
+#$ - Funktoniert gleich wie doppelte eckige Klammern ist aber etwas eleganter in der Anwendung
+list_rl1$Stats[2]
+
+# Nun da wir wissen, wie wir auf die einzelnen Elemente zugreifen können, wollen wir uns mal ansehen
+# wie wir diese mutierene können.
+
