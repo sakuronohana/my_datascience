@@ -68,4 +68,11 @@ list_rl1$Stats[2]
 
 # Nun da wir wissen, wie wir auf die einzelnen Elemente zugreifen können, wollen wir uns mal ansehen
 # wie wir diese mutierene können.
+list_rl1[4] <- 'Neue Information' # Der einfachste Weg ein neues Element zu einer Liste hinzuzufügen
 
+# Im nachfolgenden Beispiel werden wir der Liste die Timestamps hinzufügen, welche im RL1 Datensatz NA sind
+list_rl1$UnknownHours <- RL1[is.na(RL1$Utilization),'Timestamp']
+
+# Wir können das neue Element auch ganz einfach wieder löschen so wie wir es ja bereits kennen
+list_rl1$UnknownHours <- NULL
+list_rl1
