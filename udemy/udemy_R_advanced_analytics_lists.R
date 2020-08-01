@@ -60,8 +60,10 @@ list_rl1['Machine'] # Der Zugriff auf die einzelnen Element gestaltet sich mit N
 # [] - Mit den eckigen Klammern rufen wir immer eine Liste inkl. Name auf. Der Aufruf funktioniert im Index stil
 list_rl1[1]
 
-#[[]] - Mit den doppelten eckigen Klammern rufen wir nur das aktuelle Element auf
+#[[]] - Mit den doppelten eckigen Klammern rufen wir das Element und die entsprechenen Daten aufrufen
 list_rl1[[1]]
+list_rl1[c(1,3)] #Hiermit können wir mutiple einzelnen Elemente aus einer Liste aufrufen.
+list_rl1[c('Machine','LowThreshold')] # oder auch mit Namen
 
 #$ - Funktoniert gleich wie doppelte eckige Klammern ist aber etwas eleganter in der Anwendung
 list_rl1$Stats[2]
@@ -76,3 +78,21 @@ list_rl1$UnknownHours <- RL1[is.na(RL1$Utilization),'Timestamp']
 # Wir können das neue Element auch ganz einfach wieder löschen so wie wir es ja bereits kennen
 list_rl1$UnknownHours <- NULL
 list_rl1
+
+# Wir fügen nun noch ein Dataframe zur Liste hinzu
+list_rl1$Data <- RL1
+summary(list_rl1)
+
+# Bei den geladenen Daten der Machine RL1 handelt es sich um sogenante Zeitreihendaten. Wir wollen diese nun mal grafisch Darstellen
+library(ggplot2)
+
+p <- ggplot(data=util)
+myplot <- p + geom_line(aes(x=Timestamp, y=Utilization,
+                  color=Machine),size=0.5) +
+  facet_grid(Machine~.) + 
+  geom_hline(yintercept = 0.90, color='Grey', size=0.5, linetype=3)
+
+# Nun fügen wir den Plot unserer Liste hinzu :-)
+list_rl1$Plot <- myplot
+summary(list_rl1)
+str(list_rl1)
