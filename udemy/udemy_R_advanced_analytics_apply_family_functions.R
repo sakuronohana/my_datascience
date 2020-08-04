@@ -99,3 +99,26 @@ sapply(wetter, '[',1,7) # Wir sehen, dass sapply den Output in einem Vector mit 
 # Nachfolgend noch ein paar andere Beispiele
 sapply(wetter,'[',1,10:12) # Avg. Höchsttemperaturen für das letzte Quartal
 round(sapply(wetter, rowMeans),2)
+sapply(wetter, function(z) round((z[1,]-z[2,])/z[2,],2))
+# Mit einem simplen Trick können wir beweisen, dass es sich beim sapply um eine vereinfachte Version von lapply handelt
+sapply(wetter,'[',1.10:12, simplify = FALSE)
+
+# Natürlich ist es auch möglich Apply Funktionen innerhalb anderer Apply Funktionen laufen zu lassen
+# Nachfolgende fordern wir lapply auf über alle Komponenten der Liste zu gehen und pro Zeile den Max.Wert zu ermitteln
+lapply (wetter, apply, 1, max)
+lapply (wetter, apply, 1, min)
+lapply (wetter,function(x) apply(x,1,max)) # Kann auch so definiert werden
+
+# Wir machen noch einen kleinen Exkurs zur which.max und which.min Funktion. 
+# Wollen wir innerhalb eines Datensatzes gewisse maximale oder minimale Werte finden,
+# dann können wir dies mittels der which Funktion bewerkstelligen
+?which.max
+?which.min
+which.max(Chicago[1,]) # Der Output zeigt uns nun an welcher Stelle wir den max. Wert finden
+
+# Wir konnten nun aber nur nach dem max oder min Werten in der obersten Zeile suchen
+# mit der Apply Fuktion können wir das nun ändern.
+apply(Chicago,1, function(x) which.max(x))
+# und nun wollen wir dass noch über unsere Liste laufen lassen
+sapply(wetter, function(y) apply(y, 1, function(x) names(which.max(x))))
+# voila! In allen Elementen in allen Zeilen wir nun der max. Wert gesucht      
