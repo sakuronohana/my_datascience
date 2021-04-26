@@ -3,7 +3,7 @@
   "nbformat_minor": 0,
   "metadata": {
     "colab": {
-      "name": "Willkommen bei Colaboratory",
+      "name": "Datenanalyse Kehrichtverbrennungsanlagen (KVA)",
       "provenance": [],
       "collapsed_sections": [],
       "toc_visible": true,
@@ -22,7 +22,7 @@
         "colab_type": "text"
       },
       "source": [
-        "<a href=\"https://colab.research.google.com/github/sakuronohana/my_datascience/blob/master/datasets/kv-anlagen/da_kvanlagen\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+        "<a href=\"https://colab.research.google.com/github/sakuronohana/my_datascience/blob/master/datasets/kv-anlagen/da_kvanlagen.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
       ]
     },
     {
