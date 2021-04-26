@@ -1,0 +1,31 @@
+xtf_id,Number,Name,x,y,Place,Web,BeginningOfOperation
+AG_1,1,Buchs (AG) GEKAL,2650150.7607828374,1248860.1403855954,Buchs,https://kva-buchs.ch/,1969
+AG_2,2,Oftringen ERZO,2636700.5652285065,1239200.1620000442,Oftringen,https://www.erzo.ch/,1974
+AG_3,3,Turgi,2662600.9056542334,1259770.0640140988,Turgi,https://www.kva.ch/home.html,1970
+BE_1,4,Bern Energiezentrale Forsthaus EWB,2598147.1001065522,1200068.076992634,Bern,https://www.ewb.ch/,2012
+BE_2,5,Biel MÜVE,2586280.1808424112,1218905.4863158315,Biel-Bienne,https://www.mueve.ch/,1967
+BE_3,6,Thun AVAG,2612812.9800948338,1178948.8742540553,Thun,http://www.avag.ch/,2003
+BS_1,7,Basel IWB,2609850.4815939586,1269150.5474620243,Basel,https://www.iwb.ch/,1943
+FR_1,8,Posieux SAIDEF,2575699.8078124067,1180273.0990902844,Posieux,https://www.saidef.ch,2001
+GE_1,9,Les Cheneviers SIG,2491349.279740245,1116900.157391021,Genf,https://www.sig-ge.ch,1966
+GL_1,10,Niederurnen Linthgebiet,2721500.7620270727,1221799.7482512516,Niederurnen,https://www.kva-linthgebiet.ch/,1973
+GR_1,11,Trimmis GEVAG,2761300.768572353,1198299.7325590567,Untervaz-Bahnhof,https://gevag.ch/,1975
+LU_2,13,Perlen Renergia,2671086.7798760636,1218461.839941271,Perlen,https://www.renergia.ch/,2015
+NE_1,14,Colombier VADEC,2555099.750140644,1202500.3945233785,Colombier,https://www.vadec.ch/,1971
+NE_2,15,La Chaux-de-Fonds VADEC,2554179.8075657743,1217600.6264032598,La Chaux-de-Fonds,https://www.vadec.ch/,1972
+SG_1,16,Bazenheid ZAB,2722925.7603067895,1253754.7239402733,Bazenheid,https://www.zab.ch/,1976
+SG_2,17,Buchs (SG) VfA,2755000.593464825,1226999.723726922,Buchs (SG),https://vfa-buchs.ch/,1960
+SG_3,18,St. Gallen,2742840.644878202,1253304.6079154662,St. Gallen,https://www.stadt.sg.ch/,1972
+SO_1,19,Zuchwil Emmenspitz KEBAG,2609995.3544471012,1229345.3374209844,Zuchwil,https://www.kebag.ch/,1976
+TG_1,20,Weinfelden KVA Thurgau,2727219.8674004977,1268728.5723679322,Weinfelden,https://www.kvatg.ch/,1996
+TI_1,21,Giubiasco ACR,2719817.411986368,1114618.1264490883,Giubiasco,https://www.aziendarifiuti.ch/,2009
+VD_2,22,Lausanne TRIDEL,2539126.5905719055,1153927.431513277,Lausanne,http://www.tridel.ch/,2006
+VS_1,23,Gamsen KVA Oberwallis,2638686.757638888,1127960.7441212977,Gamsen,https://www.abfall-oberwallis.ch/,1971
+VS_2,24,Sion UTO,2598419.472185063,1121086.9857282545,Uvrier,http://www.utovs.ch/,1971
+VS_3,25,Monthey SATOM,2563201.413171168,1125300.3057128054,Monthey,https://satomsa.ch/,1976
+ZH_1,26,Dietikon Limeco,2672780.945963947,1252199.9496924968,Dietikon,https://www.limeco.ch/,1971
+ZH_2,27,Hinwil KEZO,2704465.8522875197,1240569.7612467415,Hinwil,http://www.kezo.ch/,1963
+ZH_3,28,Horgen,2688610.858434048,1233739.8826301384,Horgen,https://zvho.ch/,1967
+ZH_4,29,Zürich Hagenholz ERZ,2685000.928073462,1252099.8344316767,Zürich,https://www.erz.ch,1969
+ZH_5,30,Zürich Josefstrasse ERZ,2681807.909313158,1248995.8482936008,Zürich,http://www.fernwaerme-zuerich.ch/,1904
+ZH_6,31,Winterthur Stadtwerk,2698940.915277491,1261579.7877970468,Winterthur,https://stadtwerk.winterthur.ch/,1965
